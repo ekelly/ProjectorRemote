@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">ProjectorRemote</string>
+    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">Settings</string>
+
+    <!-- Button names -->
+    <string name="power">Power</string>
+    <string name="mute">Mute</string>
+</resources>
