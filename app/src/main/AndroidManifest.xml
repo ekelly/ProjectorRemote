@@ -10,7 +10,7 @@
         android:label="@string/app_name"
         android:theme="@style/AppTheme" >
 
-        <service android:name=".ProjectorRemoteService" />
+        <service android:name=".PowerIntentService" />
 
         <activity
             android:name=".Remote"
@@ -22,7 +22,10 @@
             </intent-filter>
         </activity>
 
-        <receiver android:name=".ProjectorAppWidgetProvider" >
+        <receiver
+            android:icon="@mipmap/projection_screen"
+            android:label="@string/app_name"
+            android:name=".ProjectorAppWidgetProvider" >
             <intent-filter>
                 <action android:name="android.appwidget.action.APPWIDGET_UPDATE" />
             </intent-filter>

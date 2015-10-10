@@ -1,5 +1,6 @@
 package net.erickelly.projectorremote;
 
+import android.app.IntentService;
 import android.app.Service;
 import android.content.Intent;
 import android.os.IBinder;
@@ -12,13 +13,11 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 
-public class ProjectorRemoteService extends Service {
+public class PowerIntentService extends IntentService {
     private ProjectorRemote mRemote;
 
-    @Nullable
-    @Override
-    public IBinder onBind(Intent intent) {
-        return null;
+    public PowerIntentService() {
+        super(PowerIntentService.class.getSimpleName());
     }
 
     @Override
@@ -31,22 +30,25 @@ public class ProjectorRemoteService extends Service {
         }
     }
 
+    private void toast(String message) {
+        Toast t = Toast.makeText(PowerIntentService.this,
+                message, Toast.LENGTH_SHORT);
+        t.setGravity(Gravity.BOTTOM, 0, 0);
+        t.show();
+    }
+
     @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
-        Log.d("Service", "started");
+    protected void onHandleIntent(Intent intent) {
         mRemote.sendCommand(ProjectorCommand.Power.TOGGLE, new ProjectorRemote.ResultListener() {
             @Override
             public void onSuccess(JSONObject response) {
+                toast("Success!");
             }
 
             @Override
             public void onError(Exception error) {
-                Toast t =Toast.makeText(ProjectorRemoteService.this,
-                        "Error: " + error.getMessage(), Toast.LENGTH_SHORT);
-                t.setGravity(Gravity.BOTTOM, 0, 0);
-                t.show();
+                toast("Error: " + error.getMessage());
             }
         });
-        return START_NOT_STICKY;
     }
 }
