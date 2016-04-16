@@ -62,11 +62,7 @@ public class PowerIntentService extends IntentService {
 
             @Override
             public void onError(Exception error) {
-                if (error instanceof UnknownHostException) {
-                    toast("Error: Could not find server");
-                } else {
-                    toast("Error: " + error.getMessage());
-                }
+                toast("Error: " + error.getMessage());
                 noErrors.set(false);
                 latch.countDown();
             }
@@ -79,11 +75,7 @@ public class PowerIntentService extends IntentService {
 
             @Override
             public void onError(Exception error) {
-                if (error instanceof UnknownHostException) {
-                    toast("Error: Could not find server");
-                } else {
-                    toast("Error: " + error.getMessage());
-                }
+                toast("Error: Could not find server");
                 noErrors.set(false);
                 latch.countDown();
             }

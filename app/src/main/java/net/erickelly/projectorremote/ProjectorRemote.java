@@ -17,7 +17,8 @@ import java.io.IOException;
 
 public class ProjectorRemote {
     RequestQueue mRequestQueue;
-    private static final String mUrl = "https://eagle-5";
+    //private static final String mUrl = "http://eagle-5:8080";
+    private static final String mUrl = "http://192.168.1.189:8080";
 
     private static ProjectorRemote sInstance;
 
