@@ -1,26 +1,13 @@
 package net.erickelly.projectorremote;
 
-/**
- * Created by eric on 9/12/15.
- */
 public abstract class ProjectorCommand {
 
-    public String endpoint() {
-        return "/";
-    }
+    public enum Power implements Command {
+        ON, OFF, TOGGLE;
 
-    public static class Power extends ProjectorCommand {
-        private String state;
-        public static Power ON = new Power("ON"),
-                OFF = new Power("OFF"),
-                TOGGLE = new Power("TOGGLE");
-
-        private Power(String state) {
-            this.state = state;
-        }
-
+        @Override
         public String toString() {
-            return state;
+            return name().toUpperCase();
         }
 
         public String endpoint() {
@@ -28,20 +15,20 @@ public abstract class ProjectorCommand {
         }
     }
 
-    public static class Mute extends ProjectorCommand {
-        private String state;
-        public static Mute ON = new Mute("ON"), OFF = new Mute("OFF"), TOGGLE = new Mute("TOGGLE");
+    public enum Mute implements Command {
+        ON, OFF, TOGGLE;
 
-        private Mute(String state) {
-            this.state = state;
-        }
-
+        @Override
         public String toString() {
-            return state;
+            return name().toUpperCase();
         }
 
         public String endpoint() {
             return "/mute";
         }
+    }
+
+    public interface Command {
+        String endpoint();
     }
 }

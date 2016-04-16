@@ -62,7 +62,7 @@ public class RemoteFragment extends Fragment {
         mRemote.onStop();
     }
 
-    private void sendCommand(ProjectorCommand.Power command) {
+    private void sendCommand(ProjectorCommand.Command command) {
         mRemote.sendCommand(command, new ProjectorRemote.ResultListener() {
             @Override
             public void onSuccess(JSONObject response) {

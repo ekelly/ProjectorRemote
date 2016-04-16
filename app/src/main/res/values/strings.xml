@@ -4,6 +4,9 @@
     <string name="action_settings">Settings</string>
 
     <!-- Button names -->
+    <string name="dialog_title">Projector Power</string>
     <string name="power">Power</string>
     <string name="mute">Mute</string>
+    <string name="on">On</string>
+    <string name="off">Off</string>
 </resources>

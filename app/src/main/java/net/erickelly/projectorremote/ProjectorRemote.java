@@ -17,7 +17,10 @@ import java.io.IOException;
 
 public class ProjectorRemote {
     RequestQueue mRequestQueue;
-    String mUrl = "http://eagle-5:8080";
+    private static final String mUrl = "http://eagle-5:8080";
+    private static final String mRecieverUrl = "http://192.168.1.99/YamahaRemoteControl/ctrl";
+    private static final String mReceiverData = "<YAMAHA_AV cmd=\"PUT\"><Main_Zone>" +
+            "<Power_Control><Power>%s</Power></Power_Control></Main_Zone></YAMAHA_AV>\nName\n";
 
     private static ProjectorRemote sInstance;
 
@@ -44,7 +47,7 @@ public class ProjectorRemote {
         });
     }
 
-    public void sendCommand(final ProjectorCommand command, final ResultListener listener) {
+    public void sendCommand(final ProjectorCommand.Command command, final ResultListener listener) {
         try {
             JsonObjectRequest jsonRequest = new JsonObjectRequest(Request.Method.POST,
                     mUrl + command.endpoint(), createCommandRequest(command),
@@ -65,7 +68,7 @@ public class ProjectorRemote {
         }
     }
 
-    private JSONObject createCommandRequest(ProjectorCommand command) throws JSONException {
+    private JSONObject createCommandRequest(ProjectorCommand.Command command) throws JSONException {
         JSONObject request = new JSONObject();
         request.put("payload", command.toString());
         return request;
@@ -75,4 +78,5 @@ public class ProjectorRemote {
         void onSuccess(JSONObject response);
         void onError(Exception error);
     }
+
 }
