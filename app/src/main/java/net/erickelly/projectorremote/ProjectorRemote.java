@@ -17,10 +17,7 @@ import java.io.IOException;
 
 public class ProjectorRemote {
     RequestQueue mRequestQueue;
-    private static final String mUrl = "http://eagle-5:8080";
-    private static final String mRecieverUrl = "http://192.168.1.99/YamahaRemoteControl/ctrl";
-    private static final String mReceiverData = "<YAMAHA_AV cmd=\"PUT\"><Main_Zone>" +
-            "<Power_Control><Power>%s</Power></Power_Control></Main_Zone></YAMAHA_AV>\nName\n";
+    private static final String mUrl = "https://eagle-5";
 
     private static ProjectorRemote sInstance;
 
